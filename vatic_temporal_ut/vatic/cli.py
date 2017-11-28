@@ -21,13 +21,6 @@ import merge
 import parsedatetime.parsedatetime
 import datetime, time
 
-
-
-def listdir_nohidden(path):
-    for f in os.listdir(path):
-        if not f.startswith('.'):
-            yield f
-            
 @handler("Decompresses an entire video into frames")
 class extract(Command):
     def setup(self):
@@ -129,7 +122,7 @@ class load(LoadCommand):
 #        secondlevel = max(int(x)
 #            for x in os.listdir("{0}/{1}".format(args.location, toplevel)))
         maxframes = max(int(os.path.splitext(x)[0])
-            for x in listdir_nohidden("{0}"
+            for x in os.listdir("{0}"
             .format(args.location)))
 
         print "Found {0} frames.".format(maxframes)
